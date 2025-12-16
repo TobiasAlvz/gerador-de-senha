@@ -6,6 +6,7 @@ export default function App() {
   const [passwordSize, setPasswordSize] = useState(12);
   const [showInput, setShowInput] = useState(false);
   const [copy, setCopy] = useState("Copiar");
+  const [showPassword, setShowPassword] = useState(false);
 
   function generate() {
     const characters =
@@ -20,6 +21,7 @@ export default function App() {
 
     setPassword(newPassword);
     setCopy("Copiar");
+    showPassword(true);
   }
 
   function copyText() {
@@ -54,9 +56,13 @@ export default function App() {
         Gerar senha de {passwordSize} caracteres
       </button>
 
+      <button onClick={() => setShowPassword((prev) => !prev)}>
+        {showPassword ? "Ocultar senha" : "Mostrar senha"}
+      </button>
+
       <button onClick={copyText}>{copy}</button>
 
-      <div>{password}</div>
+      <div>{showPassword ? password : "*********"}</div>
     </div>
   );
 }
